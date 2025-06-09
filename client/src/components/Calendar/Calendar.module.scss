@@ -1,0 +1,138 @@
+.calendar {
+  // shared base styles
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.adminCalendar {
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: #000;
+}
+
+.publicCalendar {
+  background-color: transparent;
+  color: #fff;
+}
+
+.headerButton {
+  border-radius: 4px;
+  padding: 2px 10px;
+  cursor: pointer;
+}
+
+.headerButtonPublic {
+  background-color: transparent;
+  color: #fff;
+}
+
+.headerButtonAdmin {
+  background-color: #fff;
+  color: #000;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  margin-bottom: 16px;
+
+  span {
+    font-size: 16px;
+  }
+}
+
+.daysOfWeek {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.day {
+  text-align: center;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.dayAdmin {
+  border: 1px solid #ccc;
+  min-height: 100px;
+  color: #000;
+
+  &:hover {
+    background-color: #e2e2e2;
+  }
+}
+
+.dayPublic {
+  background-color: transparent;
+  color: #fff;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+}
+
+.selectedAdmin {
+  background-color: #000;
+  color: #fff;
+}
+
+.selectedPublic {
+  background-color: #000;
+  color: #fff;
+}
+
+.disabled {
+  color: #b0b0b0;
+  pointer-events: none;
+  cursor: default;
+}
+
+.empty {
+  visibility: hidden;
+}
+
+.selected {
+  background-color: #000;
+  color: #fff;
+}
+
+.disabled {
+  color: #b0b0b0;
+  pointer-events: none;
+  cursor: default;
+}
+
+.reservationBadge {
+  margin-top: 4px;
+  font-size: 0.75rem;
+  background-color: #e11d48; // red
+  color: white;
+  border-radius: 9999px;
+  padding: 2px 6px;
+  display: inline-block;
+  text-align: center;
+}
+
+@media screen and (max-width: 650px) {
+  .calendar {
+    padding: 8px;
+  }
+}

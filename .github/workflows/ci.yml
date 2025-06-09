@@ -1,0 +1,72 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install root dev tools
+        run: npm install
+
+      - name: Install client dependencies
+        run: npm install
+        working-directory: client
+
+      - name: Install server dependencies
+        run: npm install
+        working-directory: server
+
+      - name: Run lint
+        run: npm run lint
+
+      - name: Run Prettier check
+        run: npm run format
+
+      - name: Type check client
+        run: npm run type-check
+        working-directory: client
+
+      - name: Check for vulnerabilities
+        run: npm audit --audit-level=moderate || true
+
+      - name: Validate required env variables
+        run: |
+          REQUIRED_VARS=("PORT" "DB_HOST" "DB_USER" "DB_PASS")
+          for VAR in "${REQUIRED_VARS[@]}"; do
+            if ! grep -q "$VAR=" .env.example; then
+              echo "Missing required env var: $VAR"
+              exit 1
+            fi
+          done
+
+      - name: Build client
+        run: npm run build
+        working-directory: client
+
+      - name: Deploy to Server
+        if: github.ref == 'refs/heads/main'
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd /path/to/your/project
+            git pull origin main
+            npm install
+            npm run build
+            pm2 restart all

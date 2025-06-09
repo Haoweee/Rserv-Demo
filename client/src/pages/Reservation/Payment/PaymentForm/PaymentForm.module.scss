@@ -1,0 +1,148 @@
+.paymentForm {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  // gap: 20px;
+  width: 100%;
+}
+
+.paymentForm__label {
+  font-size: 16px;
+  color: #fff;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.paymentForm__input {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 15px;
+  background: transparent;
+  color: #fff;
+  font-weight: 500;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.paymentForm__input:hover {
+  border-color: #f0f0f0;
+}
+
+.paymentForm__input:focus {
+  border-color: #fff;
+}
+
+.paymentNote {
+  background-color: transparent;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 0.5rem;
+  text-align: center;
+  color: #fff;
+}
+
+.paymentForm__container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.paymentForm {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+}
+
+.left__paymentForm {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  text-align: left;
+}
+
+.right__paymentForm {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.expiryDate__cvc {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.paymentForm__box {
+  flex: 1;
+  margin-top: 0.5rem;
+}
+
+.termsAndConditionsContainer {
+  position: relative;
+  margin-top: auto;
+  margin-bottom: 1rem;
+  color: #d3d3d3;
+}
+
+.termsAndConditions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  span {
+    font-size: 13px;
+  }
+}
+
+.relativeContainer {
+  flex: 1; /* Ensure equal width */
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.error {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  color: red;
+  font-size: 12px;
+}
+
+.navigationButtons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .paymentForm {
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 750px) {
+  .paymentForm {
+    flex-direction: column;
+  }
+
+  .right__paymentForm,
+  .left__paymentForm,
+  .navigationButtons {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .termsAndConditionsContainer {
+    margin: 0 auto;
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+}

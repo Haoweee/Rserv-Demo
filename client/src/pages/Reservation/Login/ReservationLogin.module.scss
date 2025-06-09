@@ -1,0 +1,238 @@
+.overlay_text {
+  position: relative;
+  width: 100%;
+  height: 30vh;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.overlay_text_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 95%;
+  margin: auto;
+
+  span {
+    font-size: 60px;
+    font-family: 'Luxurious Script', serif;
+    font-weight: 500;
+    font-style: normal;
+    color: #fff;
+    margin-left: 25px;
+  }
+
+  .overlay_button {
+    width: 100px;
+    background: none;
+    border: 1px solid #ddd;
+    color: #ddd;
+    border-radius: 0;
+    margin-top: 20px;
+  }
+
+  .overlay_button:hover {
+    color: #fff;
+    border: 1px solid #fff;
+  }
+
+  .overlay_button:active {
+    color: #ccc;
+    border: 1px solid #ccc;
+  }
+}
+
+.reservationLogin__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+@keyframes slideBlurDown {
+  0% {
+    height: 0%;
+  }
+  100% {
+    height: 100%;
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pageOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh; // fixed height
+  backdrop-filter: blur(5px);
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0.2) 50%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  z-index: 0; // make sure it's on top
+}
+
+.formContainer {
+  position: absolute;
+  top: 40%;
+  transform: translate(-50%, -50%); // this ensures perfect centering
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  max-height: 100vh;
+  overflow-y: auto;
+
+  z-index: 1000;
+  padding: 20px;
+}
+
+.form {
+  width: 100%;
+  max-width: 300px;
+  z-index: 1100;
+  // opacity: 0;
+  // animation: fadeInUp 0.5s forwards;
+  // animation-delay: 0.25s;
+  text-align: center;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 0.75rem;
+    font-size: 14pt;
+    color: #fff;
+  }
+}
+
+.phoneInput__container {
+  width: 100% !important;
+  max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.25rem !important;
+}
+
+.phoneInput__input,
+.loginCodeInput {
+  background-color: rgba(0, 0, 0, 0.35) !important;
+  border: 1px solid #fff !important;
+  text-align: center;
+  padding-left: 0 !important;
+  outline: none !important;
+  color: #fff !important;
+  font-size: 16px !important;
+  backdrop-filter: blur(15px) !important;
+}
+
+.codeInput {
+  .loginCodeInput {
+    background-color: rgba(0, 0, 0, 0.35) !important;
+    border-radius: 3px;
+    backdrop-filter: blur(15px);
+  }
+  margin-bottom: 0.25rem !important;
+}
+
+.phoneInput__button {
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.login_button {
+  background-color: rgba(0, 0, 0, 0.3) !important;
+  border: 1px solid #fff;
+  border-radius: 3px;
+  backdrop-filter: blur(15px);
+}
+
+.login_button:hover {
+  border: 1px solid #ccc;
+}
+
+.login_button:active {
+  border: 1px solid #ddd;
+  color: #ddd;
+}
+
+.special_links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.special_links button {
+  background: none;
+  font-size: 8pt;
+  color: #ccc;
+  text-decoration: underline;
+}
+
+.privacy:hover button,
+.terms:hover button {
+  color: #ddd;
+}
+
+.reservationLogin {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+@media (max-width: 600px) {
+  .overlay_text_container {
+    align-items: center;
+
+    span {
+      padding-top: 25px;
+      font-size: 50px;
+    }
+
+    .overlay_button {
+      margin-top: 0;
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  .overlay_text_container {
+    align-items: center;
+
+    span {
+      padding-top: 25px;
+      margin-left: 5px;
+      font-size: 45px;
+    }
+
+    .overlay_button {
+      margin-top: 0;
+    }
+  }
+}

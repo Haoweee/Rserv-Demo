@@ -1,0 +1,44 @@
+@import '../../../pages/HR/AdminLayout/Layout.module.scss';
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 95%;
+  margin: 0 auto;
+  height: 60px;
+
+  .logout-button {
+    width: 5rem;
+  }
+
+  .left-section {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .left-section a {
+    text-decoration: none;
+    color: #000;
+  }
+
+  .right-section {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.links {
+  display: flex;
+  gap: 1rem;
+  font-size: 16px;
+
+  .active {
+    font-weight: bold;
+    color: #007bff;
+  }
+
+  .active:hover {
+    background-color: #f0f0f0;
+  }
+}

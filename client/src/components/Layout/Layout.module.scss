@@ -1,0 +1,31 @@
+.main__container {
+  flex: 1;
+  position: relative;
+
+  .header__pwd {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background-color: #fff;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0;
+    padding: 8px;
+    gap: 5px;
+    height: 60px;
+  }
+
+  .verticalBar {
+    width: 1px;
+    height: 20px;
+    background-color: #ccc;
+    margin: 0 10px;
+  }
+
+  .children {
+    max-width: 100%;
+    margin: 0 auto;
+    padding-top: 0.5rem;
+  }
+}

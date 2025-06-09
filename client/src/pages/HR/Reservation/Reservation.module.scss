@@ -1,0 +1,47 @@
+.saveButton {
+  background-color: #000 !important;
+  width: 100px;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.fixed-save {
+  position: fixed; /* Ensures the button stays fixed relative to the viewport */
+  top: 10px; /* Distance from the top of the viewport */
+  right: 20px; /* Distance from the right of the viewport */
+  background-color: #000;
+  color: #fff;
+  border-radius: 4px;
+  padding: 8px 16px;
+  z-index: 9999; /* Ensures the button stays above all other elements */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cancelButton {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #000;
+  margin-bottom: 0;
+}
+
+.insideCard {
+  max-width: 200px;
+  margin: 0 auto;
+}
+
+.inputSection {
+  flex: 1;
+  text-align: center;
+  justify-content: center;
+}
+
+.inputSection__input {
+  margin-bottom: 0;
+}
+
+.centerButtons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

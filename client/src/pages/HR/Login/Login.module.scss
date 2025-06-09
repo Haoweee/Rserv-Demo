@@ -1,0 +1,166 @@
+.register,
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login {
+  height: 100vh;
+}
+
+.register {
+  height: calc(100vh - 60px);
+}
+
+.register__form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-radius: 8px;
+  padding: 1.25rem;
+
+  span {
+    font-size: 14px;
+    margin-top: 8px;
+    text-align: center;
+  }
+
+  h1 {
+    text-align: left;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+
+  .formGroup {
+    margin-bottom: 1rem;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-weight: bold;
+  }
+
+  .formInput {
+    width: 100%;
+    padding: 0.25rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+  }
+
+  .form-item {
+    margin-bottom: 0;
+
+    label {
+      color: #000 !important;
+    }
+
+    input {
+      margin-bottom: 0;
+    }
+  }
+
+  .form-button {
+    width: 100%;
+    padding: 0.35rem;
+    background-color: #000;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #333;
+      color: #fff;
+    }
+
+    &:active {
+      background-color: #444;
+      color: #fff;
+    }
+  }
+}
+
+.login__form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1.25rem;
+
+  span {
+    font-size: 14px;
+    margin-top: 8px;
+    text-align: center;
+  }
+
+  h1 {
+    text-align: left;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+
+  .formGroup {
+    margin-bottom: 1rem;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-weight: bold;
+  }
+
+  .formInput {
+    width: 100%;
+    padding: 0.25rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+  }
+
+  .form-item {
+    margin-bottom: 0;
+
+    label {
+      color: #000 !important;
+    }
+
+    input {
+      margin-bottom: 0;
+    }
+  }
+
+  .form-button {
+    width: 100%;
+    padding: 0.35rem;
+    background-color: #000;
+  }
+
+  .forgotPassword {
+    margin-top: 0.5rem;
+    text-align: right;
+    font-size: 0.875rem;
+  }
+
+  .forgotPassword a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: #0056b3;
+    }
+  }
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 0.2rem;
+}

@@ -1,0 +1,64 @@
+.input {
+  // margin-bottom: 0.25rem;
+  width: 100%;
+  align-self: flex-start;
+
+  label {
+    font-size: 15px;
+    // margin-bottom: 0.25rem;
+    display: block;
+    color: #fff;
+  }
+
+  input {
+    padding: 0.25rem;
+    padding-left: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 100%;
+    font-size: 16px;
+    box-sizing: border-box;
+    outline: none;
+  }
+
+  input:hover {
+    border-color: #f0f0f0;
+  }
+
+  input:focus {
+    border-color: #fff;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+  }
+
+  textarea {
+    padding: 0.25rem;
+    padding-left: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 100%;
+    font-size: 16px;
+    box-sizing: border-box;
+    resize: none;
+  }
+}
+
+.subtitle {
+  font-size: 12px;
+  color: #a5a5a5;
+  margin-bottom: 0.25rem;
+}
+
+.asterisk {
+  color: red;
+  margin-left: 2px;
+}
+
+@media screen and (max-width: 660px) {
+  .input {
+    // margin-bottom: 0.25rem;
+
+    label {
+      font-size: 0.9rem;
+    }
+  }
+}

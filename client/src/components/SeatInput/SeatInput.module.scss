@@ -1,0 +1,74 @@
+.inputWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.label {
+  font-weight: bold;
+  color: #fff;
+}
+
+.min {
+  font-size: 0.75rem;
+  color: #ccc;
+}
+
+.subtitle {
+  font-size: 0.7rem;
+  font-weight: lighter;
+  color: lightgray;
+}
+
+.inputContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  button {
+    background: transparent;
+    border: 1px solid #ccc;
+  }
+}
+
+.inputField {
+  width: 32px;
+  height: 32px;
+  text-align: center;
+  padding: 0.25rem;
+  color: #fff;
+  border: none;
+  background: transparent;
+
+  /* Remove spinners in Chrome, Safari, Edge */
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Remove spinners in Firefox */
+  -moz-appearance: textfield;
+}
+
+.adderButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  color: #fff;
+}
+
+.adderButton:hover {
+  border-color: #f0f0f0;
+}
+
+.adderButton:active {
+  border-color: lightgray;
+}

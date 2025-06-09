@@ -1,0 +1,31 @@
+.navigation__container {
+  margin-top: 0.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.backButton,
+.submitButton {
+  max-width: fit-content;
+  padding: 3px 20px;
+}
+
+.backButton {
+  background-color: transparent;
+  border: 1px solid transparent;
+  color: #fff;
+}
+
+.backButton:hover,
+.submitButton:hover {
+  color: #fff;
+  border: 1px solid #fff;
+  transition: ease 3;
+}
+
+.submitButton {
+  background-color: #111;
+  color: #fff;
+  border: 1px solid transparent;
+}

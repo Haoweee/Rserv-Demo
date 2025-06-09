@@ -1,0 +1,119 @@
+.reservation__container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  // padding: 0 8px;
+  text-align: left;
+  z-index: 1000;
+
+  @media (max-width: 650px) {
+    margin-top: 1rem;
+    padding-bottom: 1rem;
+  }
+}
+
+.guestTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.guestsInput {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+
+.guestTimeOccasionWrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+
+.clearInput {
+  background: transparent;
+  border: none;
+}
+
+.reservation__content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+
+  @media (max-width: 768px) {
+    width: 95%;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 650px) {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  z-index: 1000000;
+  background-color: #fff;
+  padding: 20px 20px 0 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer__buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.dateSection {
+  p {
+    font-size: 15px;
+  }
+}
+
+.ocassionInput {
+  height: 2.5rem;
+}
+
+.centeredInput,
+.guestsInput {
+  margin-bottom: 0;
+}
+
+.centeredInput {
+  text-align: center;
+  background: transparent;
+  color: #fff;
+}
+
+.instructions {
+  color: #fff;
+  ol {
+    display: list-item;
+    list-style-type: decimal;
+    margin-left: 25px;
+  }
+
+  @media (max-width: 650px) {
+    margin-bottom: 1rem;
+    text-align: left;
+  }
+}
+
+.special__request {
+  border: 1px solid #007bff;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  color: #fff;
+  margin-top: auto;
+}
