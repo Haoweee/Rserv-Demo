@@ -5,8 +5,14 @@ const routes = require('./api-router');
 
 // DEVELOPMENT ONLY: Enable CORS for all origins
 const cors = require('cors');
+
+let origin = 'http://localhost:3000'; // default
+if (process.env.NODE_ENV === 'production') {
+  origin = 'https://rserv.haowee.me';
+}
+
 const corsOptions = {
-  origin: 'http://localhost:3000',
+  origin,
   credentials: true,
 };
 
