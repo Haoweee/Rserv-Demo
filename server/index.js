@@ -2,29 +2,33 @@ require('dotenv').config();
 const express = require('express');
 const cookies = require('cookie-parser');
 const routes = require('./api-router');
-
-// DEVELOPMENT ONLY: Enable CORS for all origins
 const cors = require('cors');
-
-let origin = 'http://localhost:3000'; // default
-if (process.env.NODE_ENV === 'production') {
-  origin = 'https://rserv.haowee.me';
-}
-
-const corsOptions = {
-  origin,
-  credentials: true,
-};
 
 const app = express();
 
+let corsOptions = {
+  origin: 'http://localhost:3000',
+  credentials: true,
+};
+
+if (process.env.NODE_ENV === 'production') {
+  const allowedOrigins = ['https://rserv.haowee.me', 'https://www.rserv.haowee.me'];
+  corsOptions = {
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    credentials: true,
+  };
+}
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookies());
-
-// DEVELOPMENT ONLY: Enable CORS for all origins
-app.use(cors(corsOptions));
-
 app.use('/api', routes);
 
 module.exports = app;
