@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const stripe = require('stripe')(process.env.STRIPE_TOKEN);
 
-async function createPaymentIntent(amount, currency, phoneNumber) {
+async function createPaymentIntent(amount, currency, _phoneNumber) {
   try {
     return await stripe.paymentIntents.create({
       amount,

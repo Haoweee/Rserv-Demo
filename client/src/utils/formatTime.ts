@@ -28,7 +28,7 @@ export const extractDateAndTime = (datetime: string): { date: string; time: stri
       .toString()
   );
 
-  const [datePart, timePart] = sgt.toISOString().split('T');
+  const [datePart] = sgt.toISOString().split('T');
   const [year, month, day] = datePart.split('-');
 
   const formattedDate = `${month}/${day}/${year.slice(-2)}`;

@@ -15,7 +15,7 @@ const globalMutex = new Mutex();
 
 const MILLIS_PER_MIN = 60 * 1000;
 const MILLIS_PER_HOUR = 60 * 60 * 1000;
-const MILLIS_PER_DAY = 24 * 60 * 60 * 1000;
+const _MILLIS_PER_DAY = 24 * 60 * 60 * 1000;
 
 const CHARGE_AMOUNT = 100;
 
@@ -93,7 +93,7 @@ async function sendDailyTimedMessage() {
   await telegram.saveLastMessage(TELEGRAM_TODAY_MESSAGE_ID, today_date);
 }
 
-async function sendDailyMessage(today_date) {
+async function _sendDailyMessage(today_date) {
   res = {
     status: 200,
     message: '',
@@ -450,7 +450,7 @@ const placeReservationHold = async (req, res) => {
 const processReservation = async (req, res) => {
   try {
     const { phoneNumber } = req.body;
-    let today = false;
+    let _today = false;
 
     if (!phoneNumber) {
       return res.status(400).json({
@@ -491,7 +491,7 @@ const processReservation = async (req, res) => {
     today_date.setHours(0, 0, 0, 0);
 
     if (res_date.getTime() === today_date.getTime()) {
-      today = true;
+      _today = true;
     }
 
     // Check Charge

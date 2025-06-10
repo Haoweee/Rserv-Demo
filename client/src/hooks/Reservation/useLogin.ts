@@ -5,18 +5,15 @@ import {
   LoginResponse,
   VerifyLoginCodeResponse,
 } from '../../services/Reservation/auth';
-import { useNavigate } from 'react-router-dom';
 
 export const useLogin = () => {
   const [phoneNumber, setPhoneNumber] = useState<string>('');
   const [reserveFormOpen, setReserveFormOpen] = useState<boolean>(false);
   const [loginCodeRequested, setLoginCodeRequested] = useState<boolean>(false);
   const [loginCode, setLoginCode] = useState<string>('');
-  const [animatingOut, setAnimatingOut] = useState(false);
   const [phoneNumberError, setPhoneNumberError] = useState<string | null>(null);
   const [loginCodeError, setLoginCodeError] = useState<string | null>(null);
   const [error, setError] = useState('');
-  const navigate = useNavigate();
 
   const handleOpenReserveForm = () => {
     setReserveFormOpen(true);

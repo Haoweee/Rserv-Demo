@@ -1,9 +1,4 @@
 const express = require('express');
-const multer = require('multer');
-// Set up storage for multer
-const storage = multer.memoryStorage();
-const upload = multer({ storage: storage });
-
 const auth = require('./middleware/auth');
 
 const userController = require('./controllers/user-controller');

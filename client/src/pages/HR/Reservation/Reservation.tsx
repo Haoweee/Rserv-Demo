@@ -5,7 +5,7 @@ import {
 } from '../../../hooks/HR/useReservationSettings';
 import { ISOTo12HourSGT, validateAndFormatTime } from '../../../utils/formatTime';
 import { Table } from '../../../types/ReservationData';
-import { ValidationErrors } from '../../../utils/validateAdminInputs';
+// import { ValidationErrors } from '../../../utils/validateAdminInputs';
 import ReservationHeader from './ReservationHeader/ReservationHeader';
 import ReservationTables from './ReservationTables/ReservationTables';
 import ReservationModal from './ReservationModal/EditTables';

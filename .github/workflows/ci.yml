@@ -18,19 +18,20 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
+          cache: 'npm'
 
       - name: Install root dev tools
-        run: npm install
+        run: npm ci
 
       - name: Install client dependencies
-        run: npm install
+        run: npm ci
         working-directory: client
 
       - name: Install server dependencies
-        run: npm install
+        run: npm ci
         working-directory: server
 
-      - name: Run lint
+      - name: Run ESLint
         run: npm run lint
 
       - name: Run Prettier check
@@ -40,14 +41,14 @@ jobs:
         run: npm run type-check
         working-directory: client
 
-      - name: Check for vulnerabilities
+      - name: Audit dependencies (non-blocking)
         run: npm audit --audit-level=moderate || true
 
       - name: Build client
         run: npm run build
         working-directory: client
 
-      - name: Deploy to Server
+      - name: Deploy to Production Server
         if: github.ref == 'refs/heads/main'
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -55,8 +56,10 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            cd /path/to/your/project
+            cd /var/www/your-app
             git pull origin main
             npm install
-            npm run build
+            npm install --prefix server
+            npm install --prefix client
+            npm run build --prefix client
             pm2 restart all

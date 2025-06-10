@@ -45,7 +45,7 @@ export default function ReservationLogin() {
     } else if (modalParam === 'privacy') {
       handleOpenPolicy();
     }
-  }, [modalParam]);
+  }, [modalParam, handleOpenConditions, handleOpenPolicy]);
 
   const [overlayVisible, setOverlayVisible] = useState(true);
 

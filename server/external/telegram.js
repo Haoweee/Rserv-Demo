@@ -18,7 +18,7 @@ async function sendMessage(id, message) {
 
 async function editMessage(message_id, chat_id, message) {
   try {
-    message = await bot.editMessageText(message, { chat_id, message_id });
+    _message = await bot.editMessageText(message, { chat_id, message_id });
     return true;
   } catch (error) {
     // console.log(error)
