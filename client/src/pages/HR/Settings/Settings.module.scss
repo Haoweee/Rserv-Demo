@@ -7,7 +7,6 @@
   width: 150px;
   text-align: center;
   border: none;
-  color: #fff;
   background-color: #000;
   font-size: 13px;
   padding: 8px 12px;
@@ -15,9 +14,18 @@
   transition: 0.2s ease all;
   margin-top: 1rem;
 
+  a {
+    color: #fff;
+    text-decoration: none;
+
+    &:hover {
+      color: #fff;
+      text-decoration: none;
+    }
+  }
+
   &:hover {
     background-color: #333;
-    color: #fff;
   }
 }
 
@@ -30,6 +38,16 @@
   padding: 8px 12px;
   border-radius: 6px;
   transition: 0.2s ease all;
+
+  a {
+    color: #fff;
+    text-decoration: none;
+
+    &:hover {
+      color: #fff;
+      text-decoration: none;
+    }
+  }
 
   &:hover {
     background-color: #d32f2f;

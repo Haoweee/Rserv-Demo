@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import { getReservationSettings, setReservationSettings } from '../../services/HR/reservation';
 import { SGTToUTC, combineDateTimeToISO } from '../../utils/formatTime';
-import type { ReservationSettings } from '../../types/ReservationData';
+import type { ReservationSettings, Table } from '../../types/ReservationData';
 
 export const useGetReservationSettings = () => {
   const [settings, setSettings] = useState<ReservationSettings | null>(null);
@@ -35,12 +35,7 @@ export const useSetReservationSettings = () => {
     startTime: string,
     endTime: string,
     buffer: number,
-    tables: {
-      tableID: number;
-      tableCount: number;
-      maxSeats: number;
-      minSeats: number;
-    }[],
+    tables?: Table[],
     onSettingsUpdated?: () => void
   ) => {
     setLoading(true);
@@ -53,7 +48,12 @@ export const useSetReservationSettings = () => {
     const convertEndUTC = SGTToUTC(formatEndTime);
 
     try {
-      const data = await setReservationSettings(convertStartUTC, convertEndUTC, buffer, tables);
+      const data = await setReservationSettings(
+        convertStartUTC,
+        convertEndUTC,
+        buffer,
+        tables ?? []
+      );
 
       if (onSettingsUpdated) {
         onSettingsUpdated();

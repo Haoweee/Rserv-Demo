@@ -36,7 +36,12 @@ export interface ReservationHeaderProps {
   setEditedStartTime: (value: string) => void;
   setEditedEndTime: (value: string) => void;
   setEditedBuffer: (value: string) => void;
-  handleSaveSettings: (section: 'startTime' | 'endTime' | 'buffer', data: string) => void;
+  handleSaveSettings: (params: {
+    startTime: string;
+    endTime: string;
+    buffer: string;
+    tables?: Table[];
+  }) => void;
   validateAndFormatTime: (input: string) => string | null;
   sendLoading: boolean;
 }

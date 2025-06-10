@@ -188,7 +188,7 @@ const setReservationSetttings = async (req, res) => {
     } else {
       reservation = true;
     }
-    if (tables) {
+    if (tables && tables.length > 0) {
       table = await db.setTableConfig(tables);
     } else {
       table = true;

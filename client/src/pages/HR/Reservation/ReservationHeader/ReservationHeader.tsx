@@ -25,38 +25,42 @@ export default function ReservationHeader({
     bufferError: null,
   });
 
-  const validateAndSave = (section: 'startTime' | 'endTime' | 'buffer') => {
-    if (section === 'startTime') {
-      const { errors, isValid } = validateInputs(
-        editedStartTime,
-        endTime,
-        buffer,
-        validateAndFormatTime
-      );
-      if (isValid) handleSaveSettings('startTime', editedStartTime);
-      setErrors(errors);
-    }
+  const handleSubmitAll = () => {
+    const { errors: startErrors, isValid: isStartValid } = validateInputs(
+      editedStartTime,
+      endTime,
+      buffer,
+      validateAndFormatTime
+    );
 
-    if (section === 'endTime') {
-      const { errors, isValid } = validateInputs(
-        startTime,
-        editedEndTime,
-        buffer,
-        validateAndFormatTime
-      );
-      if (isValid) handleSaveSettings('endTime', editedEndTime);
-      setErrors(errors);
-    }
+    const { errors: endErrors, isValid: isEndValid } = validateInputs(
+      startTime,
+      editedEndTime,
+      buffer,
+      validateAndFormatTime
+    );
 
-    if (section === 'buffer') {
-      const { errors, isValid } = validateInputs(
-        startTime,
-        endTime,
-        editedBuffer,
-        validateAndFormatTime
-      );
-      if (isValid) handleSaveSettings('buffer', editedBuffer);
-      setErrors(errors);
+    const { errors: bufferErrors, isValid: isBufferValid } = validateInputs(
+      startTime,
+      endTime,
+      editedBuffer,
+      validateAndFormatTime
+    );
+
+    const combinedErrors = {
+      startTimeError: startErrors.startTimeError,
+      endTimeError: endErrors.endTimeError,
+      bufferError: bufferErrors.bufferError,
+    };
+
+    setErrors(combinedErrors);
+
+    if (isStartValid && isEndValid && isBufferValid) {
+      handleSaveSettings({
+        startTime: editedStartTime,
+        endTime: editedEndTime,
+        buffer: editedBuffer,
+      });
     }
   };
 
@@ -66,9 +70,9 @@ export default function ReservationHeader({
       <div className="flex flex-row justify-between items-center whitespace-nowrap gap-4">
         <h1 className="text-lg">Operational Hours</h1>
         <Button
-          onClick={() => validateAndSave('startTime')}
+          onClick={handleSubmitAll}
           disabled={sendLoading}
-          className={styles.saveButton}
+          className={`${styles.saveButton} ${styles.saveButtonHeader}`}
         >
           {sendLoading ? 'Save' : 'Save'}
         </Button>

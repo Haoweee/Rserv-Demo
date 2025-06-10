@@ -1,8 +1,11 @@
 .saveButton {
   background-color: #000 !important;
-  width: 100px;
   color: #fff;
   border-radius: 5px;
+}
+
+.saveButtonHeader {
+  width: 100px;
 }
 
 .fixed-save {
@@ -37,6 +40,9 @@
 
 .inputSection__input {
   margin-bottom: 0;
+  label {
+    color: #000;
+  }
 }
 
 .centerButtons {

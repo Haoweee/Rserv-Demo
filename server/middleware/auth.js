@@ -19,7 +19,6 @@ const signUserToken = (emailAddress, userId) => {
 
 const verifyUserToken = (req, res, next) => {
   try {
-    console.log('Cookies:', req.cookies); // Log cookies
     const token = req.cookies.userToken;
 
     if (!token) {
@@ -28,7 +27,6 @@ const verifyUserToken = (req, res, next) => {
     }
 
     const verified = jwt.verify(token, process.env.JWT_SECRET);
-    console.log('Verified Token:', verified);
 
     if (!verified.expiration || verified.expiration < Date.now()) {
       console.error('Token is expired.');
@@ -59,10 +57,7 @@ const signReservationToken = (phoneNumber, expiration) => {
 
 const verifyReservationToken = (req, res, next) => {
   try {
-    console.log('cookie: ', req.cookies);
     const token = req.cookies.resToken;
-
-    // console.log(token)
     if (!token) throw new Error();
 
     const verified = jwt.verify(token, process.env.JWT_SECRET);

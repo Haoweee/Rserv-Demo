@@ -156,15 +156,22 @@ async function getReservationConfig() {
 
 async function setReservationConfig(startTime, endTime, buffer) {
   try {
-    response = await pool.query(`TRUNCATE TABLE reservation_config`, []);
+    const [existing] = await pool.query(`SELECT * FROM reservation_config LIMIT 1`);
+    const format = d => d.toISOString().slice(0, 19).replace('T', ' ');
+
+    if (
+      existing.length &&
+      existing[0].start_time === format(startTime) &&
+      existing[0].end_time === format(endTime) &&
+      existing[0].buffer === buffer
+    ) {
+      return true;
+    }
+
+    await pool.query(`TRUNCATE TABLE reservation_config`);
     await pool.query(
-      `INSERT INTO reservation_config (start_time, end_time, buffer)
-                          VALUES (?, ?, ?)`,
-      [
-        startTime.toISOString().slice(0, 19).replace('T', ' '),
-        endTime.toISOString().slice(0, 19).replace('T', ' '),
-        buffer,
-      ]
+      `REPLACE INTO reservation_config (start_time, end_time, buffer) VALUES (?, ?, ?)`,
+      [format(startTime), format(endTime), buffer]
     );
 
     return true;
@@ -192,18 +199,21 @@ async function getTableConfig() {
 
 async function setTableConfig(tables) {
   try {
-    response = await pool.query(`TRUNCATE TABLE reservation_tables`, []);
+    const [existing] = await pool.query(`SELECT * FROM reservation_tables`);
+    const serialized = arr => JSON.stringify([...arr].sort((a, b) => a.tableID - b.tableID));
 
-    for (const table of tables) {
-      if (table.tableCount && table.maxSeats && table.minSeats) {
-        await pool.query(
-          `INSERT INTO reservation_tables (table_count, max_seats, min_seats)
-                                VALUES (?, ?, ?)`,
-          [table.tableCount, table.maxSeats, table.minSeats]
-        );
-      }
+    if (serialized(existing) === serialized(tables)) {
+      return true;
     }
 
+    await pool.query(`TRUNCATE TABLE reservation_tables`);
+    for (const table of tables) {
+      await pool.query(
+        `INSERT INTO reservation_tables (table_count, max_seats, min_seats)
+         VALUES (?, ?, ?)`,
+        [table.tableCount, table.maxSeats, table.minSeats]
+      );
+    }
     return true;
   } catch (error) {
     console.log(error);

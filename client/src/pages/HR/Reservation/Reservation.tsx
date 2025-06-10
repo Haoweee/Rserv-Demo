@@ -41,10 +41,17 @@ export default function Reservation() {
     }
   }, [settings]);
 
-  const handleSaveSettings = (
-    section: 'startTime' | 'endTime' | 'buffer' | 'tables',
-    data: string | Table[]
-  ) => {
+  const handleSaveSettings = ({
+    startTime,
+    endTime,
+    buffer,
+    tables,
+  }: {
+    startTime: string;
+    endTime: string;
+    buffer: string;
+    tables?: Table[];
+  }) => {
     const updatedSettings = {
       startTime,
       endTime,
@@ -52,17 +59,12 @@ export default function Reservation() {
       tables,
     };
 
-    if (section === 'startTime') updatedSettings.startTime = data as string;
-    if (section === 'endTime') updatedSettings.endTime = data as string;
-    if (section === 'buffer') updatedSettings.buffer = data.toString();
-    if (section === 'tables') updatedSettings.tables = data as Table[];
-
     sendReservationSettings(
       updatedSettings.startTime,
       updatedSettings.endTime,
       parseInt(updatedSettings.buffer, 10),
       updatedSettings.tables,
-      fetchSettings
+      fetchSettings // <- refetch on success
     );
   };
 
@@ -72,19 +74,34 @@ export default function Reservation() {
 
   const handleModalSave = (updatedTables: Table[]) => {
     setTables(updatedTables);
-    handleSaveSettings('tables', updatedTables);
+    handleSaveSettings({
+      startTime,
+      endTime,
+      buffer: buffer.toString(),
+      tables: updatedTables,
+    });
   };
 
   const addTable = async (newTable: Table) => {
     const updatedTables = [...tables, newTable];
     setTables(updatedTables);
-    await handleSaveSettings('tables', updatedTables);
+    await handleSaveSettings({
+      startTime,
+      endTime,
+      buffer: buffer.toString(),
+      tables: updatedTables,
+    });
   };
 
   const removeTable = async (tableToRemove: Table) => {
     const updatedTables = tables.filter(table => table.tableID !== tableToRemove.tableID);
     setTables(updatedTables);
-    await handleSaveSettings('tables', updatedTables);
+    await handleSaveSettings({
+      startTime,
+      endTime,
+      buffer: buffer.toString(),
+      tables: updatedTables,
+    });
   };
 
   return (
@@ -107,10 +124,20 @@ export default function Reservation() {
         tables={tables}
         setTables={setTables}
         handleTableClick={handleTableClick}
-        handleSaveSettings={updatedTables => handleSaveSettings('tables', updatedTables)}
+        handleSaveSettings={(section: 'tables', data: Table[]) => {
+          if (section === 'tables') {
+            handleSaveSettings({
+              startTime,
+              endTime,
+              buffer: buffer.toString(),
+              tables: data,
+            });
+          }
+        }}
         addTable={addTable}
         removeTable={removeTable}
       />
+
       {selectedTable && (
         <ReservationModal
           table={selectedTable}
