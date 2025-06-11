@@ -275,8 +275,8 @@ const validate2FA = async (req, res) => {
     return res
       .cookie('resToken', token, {
         httpOnly: true,
-        secure: false, // ❗ Must be false for local HTTP
-        sameSite: 'Lax', // "Lax" or "Strict" work for local dev
+        secure: true,
+        sameSite: 'Lax',
         expires: new Date(reservationAccessCodes[phoneNumber].expiration),
       })
       .status(200)
@@ -355,7 +355,7 @@ const selectReservation = async (req, res) => {
     return res
       .cookie('resToken', token, {
         httpOnly: true,
-        secure: false,
+        secure: true,
         sameSite: 'Lax',
         expires: new Date(reservationAccessCodes[phoneNumber].expiration),
       })
