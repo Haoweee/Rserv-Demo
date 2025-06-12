@@ -1,14 +1,19 @@
 const express = require('express');
 const auth = require('./middleware/auth');
-
+const rateLimiter = require('./middleware/rate-limiter');
 const userController = require('./controllers/user-controller');
 const reservationController = require('./controllers/reservation-controller');
 
 const router = express.Router();
 
 // Register/Login
-router.post('/register', auth.verifyUserToken, userController.registerUser);
-router.post('/login', userController.loginUser);
+router.post(
+  '/register',
+  rateLimiter.registerLimiter,
+  auth.verifyUserToken,
+  userController.registerUser
+);
+router.post('/login', rateLimiter.loginLimiter, userController.loginUser);
 router.post('/logout', auth.verifyUserToken, userController.logoutUser);
 
 // Token Auth
@@ -16,8 +21,8 @@ router.get('/auth/verifyReservationToken', auth.verifyReservationToken, auth.pin
 router.get('/auth/verifyUserToken', auth.verifyUserToken, auth.ping);
 
 // Reservation functions
-router.post('/send2FA', reservationController.send2FA);
-router.post('/validate2FA', reservationController.validate2FA);
+router.post('/send2FA', rateLimiter.twoFALimiter, reservationController.send2FA);
+router.post('/validate2FA', rateLimiter.twoFALimiter, reservationController.validate2FA);
 router.get('/getTodayStatus', auth.verifyReservationToken, reservationController.getTodayStatus);
 router.get('/getAvailability', auth.verifyReservationToken, reservationController.getAvailability);
 router.post(
@@ -27,11 +32,13 @@ router.post(
 );
 router.post(
   '/placeReservationHold',
+  rateLimiter.reservationHoldLimiter,
   auth.verifyReservationToken,
   reservationController.placeReservationHold
 );
 router.post(
   '/processReservation',
+  rateLimiter.processReservationLimiter,
   auth.verifyReservationToken,
   reservationController.processReservation
 );
